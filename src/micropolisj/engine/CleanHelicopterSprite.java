@@ -14,7 +14,7 @@ package micropolisj.engine;
  * It usually flies to the location in the city with the highest
  * traffic density, but sometimes flies to other locations.
  */
-public class HelicopterSprite extends Sprite
+public class CleanHelicopterSprite extends Sprite
 {
 	int count;
 	int destX;
@@ -26,9 +26,9 @@ public class HelicopterSprite extends Sprite
 	static int [] CDy = { 0, -5, -3,  0,  3,  5,  3,  0, -3 };
 	static final int SOUND_FREQ = 200;
 
-	public HelicopterSprite(Micropolis engine, int xpos, int ypos)
+	public CleanHelicopterSprite(Micropolis engine, int xpos, int ypos)
 	{
-		super(engine, SpriteKind.COP);
+		super(engine, SpriteKind.COP); // change later to new sprite
 		this.x = xpos * 16 + 8;
 		this.y = ypos * 16 + 8;
 		this.width = 32;
@@ -53,9 +53,16 @@ public class HelicopterSprite extends Sprite
 		}
 
 		if (this.count == 0) {
+			
+			// if pollution is greater than 30 send the copter to the location
+			if (city.pollutionAverage > 30) { 
+				CityLocation cent = city.getLocationOfMaxPollution();
+				this.destX = cent.x * 16 + 8;
+				this.destY = cent.y * 16 + 8;
+			}
 
-			// attract copter to monster and tornado so it blows up more often
-			if (city.hasSprite(SpriteKind.GOD)) {
+			// attract copter to monster and tornado so it blows up more often : changed to else if 
+			else if (city.hasSprite(SpriteKind.GOD)) {
 
 				MonsterSprite monster = (MonsterSprite) city.getSprite(SpriteKind.GOD);
 				this.destX = monster.x;
