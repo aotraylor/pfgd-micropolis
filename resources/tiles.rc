@@ -1009,3 +1009,15 @@
 957   misc_animation@0,2080
 958   misc_animation@0,2096
 959   misc_animation@0,2112
+# BEGIN NEW BUILDING CLEANING PARK #
+960   new_building@0,0            (zone)(conducts)(bulldozable)(building=1x1)(behavior=CLEANING_PARK)(description=#28)(pollution=200)
+# BEGIN NEW BUILDING CLEANING STATION#
+961   cleaningstation@0,0               (conducts)
+962   cleaningstation@016,0             (conducts)
+963   cleaningstation@32,0              (conducts)
+964   cleaningstation@0,16              (conducts)
+965   cleaningstation@16,16       (zone)(conducts)(bulldozable)(building=3x3)(behavior=CLEANING_STATION)(description=#28)(pollution=0)    
+966   cleaningstation@32,16             (conducts)
+967   cleaningstation@0,32              (conducts)
+968   cleaningstation@16,32             (conducts)
+969   cleaningstation@32,32             (conducts)

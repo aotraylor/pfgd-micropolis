@@ -1168,15 +1168,42 @@ public class Micropolis
 								qtem[y/2][x/2] += 15;
 								continue;
 							}
-							plevel += getPollutionValue(tile);
+							////// Trying to clean with a helicopter, not working! 
+							
+							CleanHelicopterSprite cleanCopter = (CleanHelicopterSprite) getSprite(SpriteKind.COP);
+							if (cleanCopter != null) {
+								
+								int xpos = cleanCopter.x; 
+								int ypos = cleanCopter.y;
+								
+								if (!testBounds(xpos, ypos)) 
+									return;
+								
+								
+								int t = getTile(xpos, ypos);
+								if (tile == t) {
+									plevel -= getPollutionValue(t); 
+									//plevel -= 2000;
+								}
+							}
+							
+							////////
+							if (tile == CLEANING_PARK) {
+								plevel -= getPollutionValue(tile); //if it is the aircleaner it will subtract
+							}
+							else{
+								plevel += getPollutionValue(tile);
+							}
 							if (isConstructed(tile))
 								lvflag++;
 						}
 					}
 				}
+				
+	
 
-				if (plevel < 0)
-					plevel = 250; //?
+				//if (plevel < 0)
+				//	plevel = 0; //? //changed from 250 to 0 
 
 				if (plevel > 255)
 					plevel = 255;
@@ -1461,6 +1488,8 @@ public class Micropolis
 		bb.put("INDUSTRIAL", new MapScanner(this, MapScanner.B.INDUSTRIAL));
 		bb.put("COAL", new MapScanner(this, MapScanner.B.COAL));
 		bb.put("NUCLEAR", new MapScanner(this, MapScanner.B.NUCLEAR));
+		bb.put("CLEANING_PARK", new MapScanner(this, MapScanner.B.CLEANING_PARK));
+		bb.put("CLEANING_STATION", new MapScanner(this, MapScanner.B.CLEANING_STATION));
 		bb.put("FIRESTATION", new MapScanner(this, MapScanner.B.FIRESTATION));
 		bb.put("POLICESTATION", new MapScanner(this, MapScanner.B.POLICESTATION));
 		bb.put("STADIUM_EMPTY", new MapScanner(this, MapScanner.B.STADIUM_EMPTY));
@@ -1564,7 +1593,14 @@ public class Micropolis
 			sprites.add(new HelicopterSprite(this, xpos, ypos));
 		}
 	}
-
+	//
+	void generateCleanCopter(int xpos, int ypos) // CLEANING_STATION use   
+	{
+		if (!hasSprite(SpriteKind.COP)) {
+			sprites.add(new CleanHelicopterSprite(this, xpos, ypos));
+		}
+	}
+	//
 	void generatePlane(int xpos, int ypos)
 	{
 		if (!hasSprite(SpriteKind.AIR)) {

@@ -51,7 +51,12 @@ class BuildingTool extends ToolStroke
 
 		case AIRPORT:
 			return applyZone(eff, AIRPORT);
-
+			
+		case CLEANING_PARK:
+			return applyZone(eff, CLEANING_PARK); //If the tile we're applying is the CLEANING_PARK, use applyZone to place a CLEANING_PARK tile
+		
+		case CLEANING_STATION:
+			return applyZone(eff, CLEANING_STATION); //If the tile we're applying is the CLEANING_PARK, use applyZone to place a CLEANING_PARK tile
 		default:
 			// not expected
 			throw new Error("unexpected tool: "+tool);

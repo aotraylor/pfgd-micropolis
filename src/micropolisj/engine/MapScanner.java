@@ -41,7 +41,9 @@ class MapScanner extends TileBehavior
 		STADIUM_EMPTY,
 		STADIUM_FULL,
 		AIRPORT,
-		SEAPORT;
+		SEAPORT,
+		CLEANING_PARK,
+		CLEANING_STATION; //Placeholder enum for new building. Change to building name if making a new building
 	}
 
 	@Override
@@ -83,6 +85,12 @@ class MapScanner extends TileBehavior
 			return;
 		case SEAPORT:
 			doSeaport();
+			return;
+		case CLEANING_PARK:
+			doCleaningPark(); //Call the CLEANING_PARK placeholder function
+			return;
+		case CLEANING_STATION:
+			doCleaningStation(); //Call the CLEANING_STATION placeholder function
 			return;
 		default:
 			assert false;
@@ -202,6 +210,37 @@ class MapScanner extends TileBehavior
 		}
 
 		city.powerPlants.add(new CityLocation(xpos, ypos));
+	}
+	
+	//Placeholder for a new building
+	//Look to the other do<building name>() functions to guidance on what this function should do.
+	void doCleaningPark()
+	{
+		//Very basic building functionality. Checks for power and does "repair"
+		boolean powerOn = checkZonePower();
+		if ((city.cityTime % 8) == 0) {
+			repairZone(CLEANING_PARK, 0);
+		}
+	}
+	
+	void doCleaningStation()
+	{
+		boolean powerOn = checkZonePower();
+		//city.airportCount++;
+		if ((city.cityTime % 8) == 0) {
+			repairZone(CLEANING_STATION, 3);
+		}
+
+		if (powerOn) {
+
+			//if (PRNG.nextInt(6) == 0) {
+				//city.generatePlane(xpos, ypos);
+			//}
+
+			if (PRNG.nextInt(13) == 0) {
+				city.generateCleanCopter(xpos, ypos); //generate the cleancopters
+			}
+		}
 	}
 
 	void doFireStation()

@@ -1046,7 +1046,20 @@ public class MainWindow extends JFrame
 		gridBox.add(b6,c);
 
 		b6.add(makeToolBtn(MicropolisTool.AIRPORT));
-
+		
+		//Add the CLEANING_PARK icon to the tool bar
+		c.gridy++;
+		Box b7 = new Box(BoxLayout.X_AXIS);
+		gridBox.add(b7,c);
+		b7.add(makeToolBtn(MicropolisTool.CLEANING_PARK));
+		
+		// Add CLEANING_STATION
+		c.gridy++;
+		Box b8 = new Box(BoxLayout.X_AXIS);
+		gridBox.add(b8,c);
+		b8.add(makeToolBtn(MicropolisTool.CLEANING_STATION));
+		//
+		
 		// add glue to make all elements align toward top
 		c.gridy++;
 		c.weighty = 1.0;

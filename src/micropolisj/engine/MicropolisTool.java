@@ -29,6 +29,8 @@ public enum MicropolisTool
 	POWERPLANT(4, 3000),
 	NUCLEAR(4, 5000),
 	AIRPORT(6, 10000),
+	CLEANING_PARK(1, 500), //Placeholder for a new tool. 
+	CLEANING_STATION(3, 500), //Make 5000
 	QUERY(1, 0);
 
 	int size;
@@ -68,6 +70,8 @@ public enum MicropolisTool
 		case POWERPLANT:
 		case NUCLEAR:
 		case AIRPORT:
+		case CLEANING_PARK:
+		case CLEANING_STATION:
 			return new BuildingTool(engine, this, xpos, ypos);
 
 		default:
