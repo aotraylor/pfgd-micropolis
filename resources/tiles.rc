@@ -1010,7 +1010,7 @@
 958   misc_animation@0,2096
 959   misc_animation@0,2112
 # BEGIN NEW BUILDING CLEANING PARK #
-960   new_building@0,0            (zone)(conducts)(bulldozable)(building=1x1)(behavior=CLEANING_PARK)(description=#28)(pollution=200)
+960   cleaningpark@0,0            (zone)(conducts)(bulldozable)(building=1x1)(behavior=CLEANING_PARK)(description=#28)(pollution=100)
 # BEGIN NEW BUILDING CLEANING STATION#
 961   cleaningstation@0,0               (conducts)
 962   cleaningstation@016,0             (conducts)
@@ -1021,3 +1021,5 @@
 967   cleaningstation@0,32              (conducts)
 968   cleaningstation@16,32             (conducts)
 969   cleaningstation@32,32             (conducts)
+# BEGIN NEW BUILDING SUPER GROVE TREE#
+970   supertree@0,0            (zone)(conducts)(bulldozable)(building=1x1)(behavior=CLEANING_TREE)(description=#28)(pollution=200)

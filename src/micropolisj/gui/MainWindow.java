@@ -1059,7 +1059,11 @@ public class MainWindow extends JFrame
 		gridBox.add(b8,c);
 		b8.add(makeToolBtn(MicropolisTool.CLEANING_STATION));
 		//
-		
+		//Add CLEANING_TREE
+		c.gridy++;
+		Box b9 = new Box(BoxLayout.X_AXIS);
+		gridBox.add(b9,c);
+		b9.add(makeToolBtn(MicropolisTool.CLEANING_TREE));
 		// add glue to make all elements align toward top
 		c.gridy++;
 		c.weighty = 1.0;

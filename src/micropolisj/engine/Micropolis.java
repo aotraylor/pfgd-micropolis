@@ -1168,29 +1168,24 @@ public class Micropolis
 								qtem[y/2][x/2] += 15;
 								continue;
 							}
-							////// Trying to clean with a helicopter, not working! 
-							
-							CleanHelicopterSprite cleanCopter = (CleanHelicopterSprite) getSprite(SpriteKind.COP);
-							if (cleanCopter != null) {
-								
-								int xpos = cleanCopter.x; 
-								int ypos = cleanCopter.y;
-								
-								if (!testBounds(xpos, ypos)) 
-									return;
-								
-								
-								int t = getTile(xpos, ypos);
-								if (tile == t) {
-									plevel -= getPollutionValue(t); 
-									//plevel -= 2000;
-								}
-							}
-							
-							////////
-							if (tile == CLEANING_PARK) {
+						
+						
+							CleanHelicopterSprite cleanCopter = (CleanHelicopterSprite) getSprite(SpriteKind.DRO);
+						
+							if (tile == CLEANING_PARK || tile == CLEANING_TREE) {
 								plevel -= getPollutionValue(tile); //if it is the aircleaner it will subtract
 							}
+//							else if (tile == POWERPLANT && cleanCopter != null) {
+//								
+//									plevel -= getPollutionValue(tile);
+//							}
+		
+							else if (cleanCopter != null) { // Having lots of issues here, i've tried multiple things but nothing really works.
+									//if (tile == POWERPLANT) {
+										//plevel -= (10.0 / getPollutionValue(tile)); // this makes it go down, but its over powered. Commented out bc it doesn't seem to matter what goes in this statement
+									//}
+							}
+							
 							else{
 								plevel += getPollutionValue(tile);
 							}
@@ -1203,7 +1198,7 @@ public class Micropolis
 	
 
 				//if (plevel < 0)
-				//	plevel = 0; //? //changed from 250 to 0 
+				//	plevel = 0; //? //changed from 250 to 0: took it out so there can be neg values 
 
 				if (plevel > 255)
 					plevel = 255;
@@ -1489,6 +1484,7 @@ public class Micropolis
 		bb.put("COAL", new MapScanner(this, MapScanner.B.COAL));
 		bb.put("NUCLEAR", new MapScanner(this, MapScanner.B.NUCLEAR));
 		bb.put("CLEANING_PARK", new MapScanner(this, MapScanner.B.CLEANING_PARK));
+		bb.put("CLEANING_TREE", new MapScanner(this, MapScanner.B.CLEANING_TREE));
 		bb.put("CLEANING_STATION", new MapScanner(this, MapScanner.B.CLEANING_STATION));
 		bb.put("FIRESTATION", new MapScanner(this, MapScanner.B.FIRESTATION));
 		bb.put("POLICESTATION", new MapScanner(this, MapScanner.B.POLICESTATION));
@@ -1596,7 +1592,7 @@ public class Micropolis
 	//
 	void generateCleanCopter(int xpos, int ypos) // CLEANING_STATION use   
 	{
-		if (!hasSprite(SpriteKind.COP)) {
+		if (!hasSprite(SpriteKind.DRO)) {
 			sprites.add(new CleanHelicopterSprite(this, xpos, ypos));
 		}
 	}

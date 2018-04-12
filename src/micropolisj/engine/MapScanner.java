@@ -43,6 +43,7 @@ class MapScanner extends TileBehavior
 		AIRPORT,
 		SEAPORT,
 		CLEANING_PARK,
+		CLEANING_TREE,
 		CLEANING_STATION; //Placeholder enum for new building. Change to building name if making a new building
 	}
 
@@ -91,6 +92,9 @@ class MapScanner extends TileBehavior
 			return;
 		case CLEANING_STATION:
 			doCleaningStation(); //Call the CLEANING_STATION placeholder function
+			return;
+		case CLEANING_TREE:
+			doCleaningTree(); //Call the CLEANING_TREE placeholder function
 			return;
 		default:
 			assert false;
@@ -220,6 +224,15 @@ class MapScanner extends TileBehavior
 		boolean powerOn = checkZonePower();
 		if ((city.cityTime % 8) == 0) {
 			repairZone(CLEANING_PARK, 0);
+		}
+	}
+	
+	void doCleaningTree()
+	{
+		//Very basic building functionality. Checks for power and does "repair"
+		boolean powerOn = checkZonePower();
+		if ((city.cityTime % 8) == 0) {
+			repairZone(CLEANING_TREE, 0);
 		}
 	}
 	

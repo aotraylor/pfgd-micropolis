@@ -28,7 +28,7 @@ public class CleanHelicopterSprite extends Sprite
 
 	public CleanHelicopterSprite(Micropolis engine, int xpos, int ypos)
 	{
-		super(engine, SpriteKind.COP); // change later to new sprite
+		super(engine, SpriteKind.DRO); // new sprite
 		this.x = xpos * 16 + 8;
 		this.y = ypos * 16 + 8;
 		this.width = 32;
@@ -41,7 +41,7 @@ public class CleanHelicopterSprite extends Sprite
 
 		this.origX = x;
 		this.origY = y;
-		this.count = 1500;
+		this.count = 150; // changed from 1500, this makes it less overpowered 
 		this.frame = 5;
 	}
 
